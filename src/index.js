@@ -15,6 +15,13 @@ import CadastrarProfessorAluno from './Routes/CadastrarProfessorAluno';
 import CadastrarProjeto from './Routes/CadastrarProjeto';
 import AtualizarProjetos from './Routes/AtualizarProjetos';
 import DeletarProjetos from './Routes/DeletarProjetos';
+import TabelaProjetos from './Routes/TabelaProjetos';
+import TabelaEquipes from './Routes/TabelaEquipes';
+import ThemeProvider from './components/GerenciarEstado';
+import CadastrarExperiencia from './Routes/CadastrarExperiencia';
+import FormacaoEquipes from './Routes/FormacaoEquipes';
+import CadastrarFormEquipe from './Routes/CadastrarFormEquipe';
+
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -70,13 +77,35 @@ const routes = createBrowserRouter([
       {
         path: '/DeletarProjeto',
         element: <DeletarProjetos />
+      },
+      {
+        path: '/TabelaProjetos',
+        element: <TabelaProjetos />
+      },
+      {
+        path: '/TabelaEquipe',
+        element: <TabelaEquipes />  // aqui você irá fazer a chamada para a função que retorna a lista de equipe
+      },
+      {
+        path: '/CadastrarExperiencia',
+        element: <CadastrarExperiencia /> // aqui você irá fazer a chamada para a função que retorna a lista de experiências
+      },
+      {
+        path: '/FormacaoEquipe',
+        element: <FormacaoEquipes />
+      },
+      {
+        path: '/CadastrarEquipe',
+        element: <CadastrarFormEquipe />
       }
     ]
 }])
 
 root.render(
   <React.StrictMode>
-    <RouterProvider router={routes}/>
+    <ThemeProvider>
+        <RouterProvider router={routes}/>
+    </ThemeProvider>
   </React.StrictMode>
 );
 

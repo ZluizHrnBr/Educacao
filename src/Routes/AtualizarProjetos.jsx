@@ -1,4 +1,5 @@
 import ButtonCancelar from "../components/ButtonCancelar";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 
@@ -6,6 +7,11 @@ const AtualizarProjetos = () => {
 
     const Navigate = useNavigate();
 
+    const [experiencias] = useState(['Junior', 'Pleno', 'Sênior']);
+    const [obterExperiência, setObterExperiência] = useState('');
+
+    const [listStatusDesenvolvimento] = useState(['Início', "Em Desenvolvimento", "Finalizado"]);
+    const [obterStatusDesenvolvimento, setObterStatusDesenvolvimento] = useState('');
 
     const onClickHandleCancelar = () => {
         return Navigate('/SobreSistema');
@@ -13,6 +19,10 @@ const AtualizarProjetos = () => {
     
     const onClickHandleAtualizarRegistro = () => {
         alert('Registro Atualizado');
+    }
+
+    const EventHandleObterStatusDesenvolvimento = (event) =>{
+        setObterStatusDesenvolvimento(event.target.value)
     }
 
     return(
@@ -27,24 +37,32 @@ const AtualizarProjetos = () => {
                             </div>
                             <form>
                             <div className="form-group">
-                                     <label for="Nome">Codigo_Projeto</label>
+                                     <label htmlFor="Nome">Codigo_Projeto</label>
                                      <input type="text" className="form-control" id="Nome" aria-describedby="Nome" placeholder="Nome"/>
                                  </div>
                                  <div className="form-group">
-                                     <label for="Nome">Nome_Projeto</label>
+                                     <label htmlFor="Nome">Nome_Projeto</label>
                                      <input type="number" className="form-control" id="Nome" aria-describedby="codigo" placeholder="Codigo"/>
                                  </div>
                                  <div className="form-group">
-                                     <label for="Matricula">Área Desenvolvimento</label>
+                                     <label htmlFor="Matricula">Área Desenvolvimento</label>
                                      <input type="text" className="form-control" id="Area" aria-describedby="Area" placeholder="Area"/>
                                  </div>
                                  <div className="form-group">
-                                     <label for="Idade">Experiência_Codificação</label>
-                                     <input type="text" className="form-control" id="Idade" aria-describedby="Idade" placeholder="Experiência"/>
+                                     <label htmlFor="Idade">Experiência_Codificação</label>
+                                     <select className="form-control">
+                                        {experiencias.map(item => (
+                                            <option key={item} value={item}>{item}</option>
+                                        ))}
+                                     </select>
                                  </div>
                                  <div className="form-group">
-                                     <label for="Turma">Status_Desenvolvimento</label>
-                                     <input type="text" className="form-control" id="Status" aria-describedby="Status" placeholder="Status"/>
+                                     <label htmlFor="Turma">Status_Desenvolvimento</label>
+                                     <select className="form-control">
+                                        {listStatusDesenvolvimento.map(item => (
+                                            <option key={item} value={item}>{item}</option>
+                                        ))}
+                                     </select>
                                  </div>
 
                                  <div className='d-flex justify-content-between'>

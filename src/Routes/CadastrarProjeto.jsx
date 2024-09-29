@@ -1,23 +1,40 @@
-import Input from '../components/Input';
 import ButtonCancelar from '../components/ButtonCancelar';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+
 const CadastrarProjeto = () => {
-    
-    const [NomeAluno, setDataNomeAluno] = useState('');
+
     const Navigate = useNavigate();
 
+    const [CodigoProjeto, setCodigoProjeto] = useState('');
+    const [NomeProjeto, setNomeProjeto] = useState('');
+   
+    const [listExperiencia] = useState(['Junior', 'Pleno', 'Sênior']);
+    const [obterExperiencia, setObterExperiencia] = useState('');
+    const [listStatus, setListStatus] = useState(['Início', ' Em desenvolvimento', 'Finalizado']);
+    
+    
+    const [listAtualizarStatus, setListAtualizarStatus] = useState('');
 
-    const EventChangeNomeAluno = (event) => {
-        setDataNomeAluno(event.target.value);
-    } 
-
+    const EventChangeStatusAtualizado = (event) => {
+        setListAtualizarStatus(event.target.value);
+    }
     const onClickEventChangeCancelarRegistro = () => {
         return Navigate('/SobreSistema');
     }
 
+    const EventHandleObterExperiencia = (event) => {
+        setObterExperiencia(event.target.value);
+    }
+
+    useEffect(() => {
+
+    },[])
+
+
     return (
         <div className="container-fluid">
+            <br/>
             <div className="row justify-content-center">
                 <div className='col-lg-8'>
                     <div className="card">
@@ -27,38 +44,37 @@ const CadastrarProjeto = () => {
                             </div>
                             <form>
                             <div className="form-group">
-                                     <label for="Nome">Codigo_Projeto</label>
-                                     <input type="text" className="form-control" id="Nome" aria-describedby="Nome" placeholder="Nome"/>
-                                 </div>
-                                 <div className="form-group">
-                                     <label for="Nome">Nome_Projeto</label>
-                                     <input type="number" className="form-control" id="Nome" aria-describedby="codigo" placeholder="Codigo"/>
-                                 </div>
-                                 <div className="form-group">
-                                     <label for="Matricula">Área Desenvolvimento</label>
-                                     <input type="text" className="form-control" id="Area" aria-describedby="Area" placeholder="Area"/>
-                                 </div>
-                                 <div className="form-group">
-                                     <label for="Idade">Experiência_Codificação</label>
-                                     <input type="text" className="form-control" id="Idade" aria-describedby="Idade" placeholder="Experiência"/>
-                                 </div>
-                                 <div className="form-group">
-                                     <label for="Turma">Status_Desenvolvimento</label>
-                                     <input type="text" className="form-control" id="Status" aria-describedby="Status" placeholder="Status"/>
+                                <label htmlFor="Nome">Codigo_Projeto</label>
+                                <input type="text" className="form-control" id="Nome" aria-describedby="Nome" placeholder="Codigo_Projeto" onChange={(e) => setCodigoProjeto(e.target.value)}/>
+                            </div>
+                            <div className="form-group">
+                                <label htmlFor="Nome">Nome_Projeto</label>
+                                <input type="number" className="form-control" id="Nome" aria-describedby="codigo" placeholder="Codigo" onChange={(e) => setCodigoProjeto(e.target.value)}/>
+                            </div>
+                                <div className="form-group">
+                                    <label htmlFor="Idade">Experiência_Codificação</label>
+                                    <select className='form-control' onChange={EventHandleObterExperiencia}>
+                                        {listExperiencia.map(item => (
+                                            <option key={item} value={item}>{item}</option>
+                                        ))}
+                                    </select>
+                                </div>
+                                <div className="form-group">
+                                    <label htmlFor="Turma">Status_Desenvolvimento</label>
+                                    <select className='form-control' placeholder='Status' onChange={EventChangeStatusAtualizado}>
+                                        {listStatus.map(item => (
+                                            <option key={item} value={item}>{item}</option>
+                                        ))}
+                                    </select>
                                  </div>
                                  
                                 <div className='d-flex justify-content-between'>
-                                    <button type='submit' className=' btn btn-primary'>Registrar projeto com Alocação</button>
+                                    <button type='submit' className=' btn btn-primary'>Registrar Projeto</button>
                                     <ButtonCancelar Tipo="text" onClick={onClickEventChangeCancelarRegistro}/>
                                 </div>
 
                                
                             </form>
-                            <div>
-                                    <label for="Nome_aluno">Nome do Aluno</label>    
-                                    <Input Tipo="text" Nome="Aluno" onChange={EventChangeNomeAluno}/>
-                                    <button type='submit' className='btn btn-succes'>Registrar Projeto vinculando Aluno</button>
-                                </div>
                         </div>
 
                     </div>

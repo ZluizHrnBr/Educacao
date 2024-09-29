@@ -1,9 +1,9 @@
-
+import TabelaProjeto from "../components/TabelaProjeto";
 
 const TabelaProjetos = () => {
     return (
-        <div>
-
+        <div className="container-fluid">
+            <TabelaProjeto />
         </div>
     );
 }
